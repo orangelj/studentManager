@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<properties resource="oracle.properties"></properties>
+	<typeAliases>
+		<typeAlias type="entity.Students" alias="Students"/>
+		<typeAlias type="entity.Teacher" alias="Teacher"/>
+	</typeAliases>
+	
+	<!--配置一个mybatis运行环境，如果需要连接多个数据库，则需配置多个environment标签  -->
+	<environments default="Oracle">
+		<!-- oracle运行环境配置 -->
+		<environment id="Oracle">
+			<!-- 事务管理JDBC代表使用原生的JDBC事务控制 -->
+			<transactionManager type="JDBC"></transactionManager>
+			<!-- 连接池配置 POOLED框架默认配置 -->
+			<dataSource type="POOLED">
+				<!-- 加载各种驱动信息 -->
+				<property name="driver" value="${driver}"/>
+				<property name="url" value="${url}"/>
+				<property name="username" value="${username}"/>
+				<property name="password" value="${password}"/>
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<!-- 声明 mapper配置文件 -->
+ 	<mappers>
+		<!-- 路径不能以“/” 开头  只能使用“/”进行分割  -->
+		<mapper resource="dao/impl/TeacherDaoImpl.xml"/>
+		<mapper resource="dao/impl/StudentsDaoImpl.xml"/>
+	</mappers>  
+</configuration>

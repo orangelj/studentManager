@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!-- namespace 是接口的全限定名 -->
+<mapper namespace="dao.StudentsDao">
+	<!-- 查询所有 -->
+	<select id="queryAll" resultType="Students">
+		select * from students
+	</select>
+	
+	<!--插入  -->
+	<insert id="insertUser">
+		<selectKey resultType="int" order="BEFORE" keyProperty="id">
+			select students_seq.nextval from dual
+		</selectKey>
+		insert into students values(#{id},#{name},#{password})
+	</insert>
+	
+	<!--删除  -->
+	<delete id="deleteUser">
+		delete from students where id=#{id}
+	</delete>
+	
+	<!--修改 -->
+	<update id="updateUser">
+		update students set name=#{name},password=#{password} where id=#{id}
+	</update>
+</mapper>

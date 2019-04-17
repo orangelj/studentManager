@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!-- namespace 是接口的全限定名 -->
+<mapper namespace="dao.TeacherDao">
+	
+	<!-- 查询所有 -->
+	<select id="select" resultType="Teacher">
+		select * from teacher where name=#{name} and password=#{password}
+	</select>
+	
+	<!--插入  -->
+	<insert id="insert">
+		insert into teacher values(#{name},#{password})
+	</insert>
+
+</mapper>
